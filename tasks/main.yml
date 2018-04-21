@@ -6,11 +6,4 @@
     state: directory
 
 - name: Download the Debugger Agent
-  get_url:
-    url: https://storage.googleapis.com/cloud-debugger/compute-java/debian-wheezy/cdbg_java_agent_gce.tar.gz
-    dest: "/tmp/cdbg_java_agent_gce.tar.gz"
-
-- name: Unarchive the Debugger Agent
-  unarchive:
-    src: "/tmp/cdbg_java_agent_gce.tar.gz"
-    dest: "{{ stackdriver_debugger_java_directory }}"
+  command: "wget -qO- https://storage.googleapis.com/cloud-debugger/compute-java/debian-wheezy/cdbg_java_agent_gce.tar.gz | tar xvz -C {{ stackdriver_debugger_java_directory }}"
